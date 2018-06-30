@@ -9,8 +9,8 @@ dist/*
 target/
 lib_managed/
 src_managed/
-project/boot/
-project/plugins/project/
+project/
+.idea/
 
 # Scala-IDE specific
 .scala_dependencies
@@ -46,3 +46,4 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+.idea/scala_compiler.xml
