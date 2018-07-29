@@ -13,16 +13,12 @@ object TreeGenerator {
   case class Leaf(x: Int) extends Tree
 
   val integers: Generator[Int] = new Generator[Int] {
-    val rand = new ThreadLocalRandom
+    val rand = ThreadLocalRandom.current()
 
     override def generate: Int = rand.nextInt()
   }
 
   def trees: Generator[Tree] = {
-    for {
-      isLeaf <- integers.map(x => x > 0)
-      tree <- if (isLeaf) leafs else inners
-    } yield tree
 
     def leafs: Generator[Tree] = for (x <- integers) yield Leaf(x)
 
@@ -31,6 +27,11 @@ object TreeGenerator {
         left <- leafs
         right <- leafs
       } yield Inner(left, right)
+
+    for {
+      isLeaf <- integers.map(x => x > 0)
+      tree <- if (isLeaf) leafs else inners
+    } yield tree
   }
 
 }

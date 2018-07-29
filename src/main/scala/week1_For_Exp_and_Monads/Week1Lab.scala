@@ -24,7 +24,7 @@ object Week1Lab {
 
 
   val integers: Generator[Int] = new Generator[Int] {
-    val rand = new ThreadLocalRandom
+    val rand = ThreadLocalRandom.current()
 
     override def generate: Int = rand.nextInt()
   }
